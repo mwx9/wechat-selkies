@@ -120,7 +120,10 @@ ENV WECHAT_NIGHTLY_START_TIME="01:30"
 ENV ENABLE_WECHAT_AUTO_LOGIN="true"
 ENV AUTO_LOGIN_DELAY="3"
 
-
+# ports used inside the container (nginx), override with CUSTOM_PORT / CUSTOM_HTTPS_PORT
+ENV CUSTOM_PORT="30000"
+ENV CUSTOM_HTTPS_PORT="30001"
+EXPOSE 30000 30001
 
 # update favicon
 RUN cp /usr/share/icons/hicolor/128x128/apps/wechat.png /usr/share/selkies/www/icon.png
