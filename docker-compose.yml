@@ -11,10 +11,13 @@ services:
     devices:
       - /dev/dri:/dev/dri # optional, for hardware acceleration
     ports:
-      - "${HTTP_PORT:-3000}:3000"       # http port
-      - "${HTTPS_PORT:-3001}:3001"      # https port
+      - "${HTTP_PORT:-30000}:30000"     # http port
+      - "${HTTPS_PORT:-30001}:30001"    # https port
     restart: unless-stopped
     environment:
+      # keep these two in sync with the published ports above
+      - CUSTOM_PORT=${HTTP_PORT:-30000}        # container http port
+      - CUSTOM_HTTPS_PORT=${HTTPS_PORT:-30001} # container https port
       - PUID=${PUID:-1000}              # set user id according to your system
       - PGID=${PGID:-100}               # set group id according to your system
       - CUSTOM_USER=${CUSTOM_USER:-}    # recommended to set a custom user name
